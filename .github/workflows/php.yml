@@ -1,4 +1,4 @@
-name: PHP CI
+name: PHP CI/CD
 
 on:
   push:
@@ -6,19 +6,29 @@ on:
       - main
 
 jobs:
-  php-check:
-    runs-on: ubuntu-latest
+  php-check-and-deploy:
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: PHP 설치
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: '8.2'
 
-      - name: PHP 문법 검사
+      - name: PHP Syntax Check
+        shell: powershell
         run: |
-          find . -name "*.php" -print0 | while IFS= read -r -d '' file; do
-            php -l "$file"
-          done
+          Get-ChildItem -Recurse -Filter *.php | ForEach-Object {
+            php -l $_.FullName
+          }
+
+      - name: Deploy to Apache
+        shell: powershell
+        run: |
+          Copy-Item `
+            -Path "$env:GITHUB_WORKSPACE\*" `
+            -Destination "C:\Apache24\htdocs\realtermproject" `
+            -Recurse `
+            -Force
