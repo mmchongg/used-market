@@ -12,12 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      
       - name: PHP Syntax Check
         shell: powershell
         run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+
           Get-ChildItem -Recurse -Filter *.php | ForEach-Object {
-            & "C:\php8\php.exe" -l $_.FullName
+              & "C:\php8\php.exe" -l $_.FullName
           }
 
       - name: Deploy to Apache
