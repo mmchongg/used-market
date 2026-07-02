@@ -96,7 +96,7 @@ else $sql .= " ORDER BY ITEMNO DESC";
 $stmt = oci_parse($conn, $sql);
 oci_execute($stmt);
 ?>
-
+<h2>CI/CD 테스트</h2>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
