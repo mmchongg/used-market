@@ -12,16 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
+      
       - name: PHP Syntax Check
         shell: powershell
         run: |
           Get-ChildItem -Recurse -Filter *.php | ForEach-Object {
-            php -l $_.FullName
+            & "C:\php8\php.exe" -l $_.FullName
           }
 
       - name: Deploy to Apache
