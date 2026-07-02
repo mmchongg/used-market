@@ -96,12 +96,13 @@ else $sql .= " ORDER BY ITEMNO DESC";
 $stmt = oci_parse($conn, $sql);
 oci_execute($stmt);
 ?>
-<h2>CI/CD 테스트</h2>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>중고거래 사이트</title>
+<h2>CI/CD TEST SUCCESS</h2>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
 
