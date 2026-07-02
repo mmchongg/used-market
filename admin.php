@@ -1,5 +1,5 @@
 <?php
-session_start()
+session_start();
 
 //로그인 하지 않은 경우 로그인 페이지로 이동
 if(!isset($_SESSION['cno']))
